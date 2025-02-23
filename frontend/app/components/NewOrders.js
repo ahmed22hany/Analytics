@@ -14,7 +14,6 @@ const NewOrders = () => {
   useEffect(() => {
     fetchAnalytics();
 
-    // ✅ Listen for WebSocket real-time updates
     socket.on("analyticsUpdate", (data) => {
       console.log("🔄 Real-time update received for recent orders:", data);
       setRecentOrders(data.recentOrders);
