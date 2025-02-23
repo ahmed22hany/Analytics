@@ -12,23 +12,23 @@ const LiveOrders = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    fetchOrders(); // Fetch existing orders on load
+    fetchOrders();
 
-    // ✅ Listen for new orders in real-time
+  
     socket.on("newOrder", (order) => {
       console.log("🆕 New order received:", order);
-      setOrders((prevOrders) => [order, ...prevOrders]); // ✅ Add new order instantly
+      setOrders((prevOrders) => [order, ...prevOrders]); 
     });
 
     return () => {
-      socket.off("newOrder"); // Cleanup listener to prevent duplicate events
+      socket.off("newOrder"); 
     };
   }, []);
 
   const fetchOrders = async () => {
     try {
       const { data } = await axios.get("http://localhost:5000/orders");
-      setOrders(data.reverse()); // Show latest orders first
+      setOrders(data.reverse()); 
     } catch (error) {
       console.error("❌ Error fetching orders:", error);
     }
