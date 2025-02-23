@@ -25,7 +25,7 @@ const OrderForm = () => {
       className="bg-gray-800 p-6 rounded-lg shadow-md max-w-md mx-auto text-white"
       onSubmit={handleSubmit}
     >
-      {/* Product ID */}
+   
       <div className="mb-4">
         <label className="block text-sm font-medium mb-1" htmlFor="product-id">
           Product ID:
@@ -39,9 +39,8 @@ const OrderForm = () => {
         />
       </div>
 
-      {/* Quantity & Price in a Row */}
+    
       <div className="grid grid-cols-2 gap-4 mb-4">
-        {/* Quantity */}
         <div>
           <label className="block text-sm font-medium mb-1" htmlFor="quantity">
             Quantity:
@@ -55,7 +54,6 @@ const OrderForm = () => {
           />
         </div>
 
-        {/* Price */}
         <div>
           <label className="block text-sm font-medium mb-1" htmlFor="price">
             Price:
@@ -69,8 +67,7 @@ const OrderForm = () => {
           />
         </div>
       </div>
-
-      {/* Submit Button */}
+              
       <button
         type="submit"
         className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
