@@ -10,7 +10,6 @@ router.get("/", async (req, res) => {
       0
     );
 
-    // ✅ If no orders exist, return default values
     if (!orders || orders.length === 0) {
       return res.json({
         totalRevenue: 0,
@@ -20,37 +19,33 @@ router.get("/", async (req, res) => {
       });
     }
 
-    // ✅ Count new orders in the last 1 minute
     const oneMinuteAgo = new Date(Date.now() - 60000);
     const recentOrders = orders.filter(
       (order) => new Date(order.date) > oneMinuteAgo
     ).length;
 
-    // ✅ Group revenue by minute
     const revenueTrends = {};
     orders.forEach((order) => {
-      const minute = new Date(order.date).toISOString().slice(0, 16); // "YYYY-MM-DD HH:MM"
+      const minute = new Date(order.date).toISOString().slice(0, 16);
       if (!revenueTrends[minute]) {
         revenueTrends[minute] = 0;
       }
       revenueTrends[minute] += order.price * order.quantity;
     });
 
-    // ✅ Fix Top Selling Products Calculation
     const productSales = {};
     orders.forEach((order) => {
-      const productKey = order.productId.toString().trim(); // ✅ Ensure no hidden issues with IDs
+      const productKey = order.productId.toString().trim();
       if (!productSales[productKey]) {
         productSales[productKey] = 0;
       }
       productSales[productKey] += order.quantity;
     });
 
-    // ✅ Get the correct top 5 products
     const topProducts = Object.entries(productSales)
       .map(([name, sales]) => ({ name, sales }))
-      .sort((a, b) => b.sales - a.sales) // Sort by highest sales
-      .slice(0, 5); // ✅ Keep the top 5 for the chart
+      .sort((a, b) => b.sales - a.sales)
+      .slice(0, 5);
 
     res.json({ totalRevenue, topProducts, revenueTrends, recentOrders });
   } catch (err) {
