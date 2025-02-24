@@ -5,7 +5,10 @@ import { RiFileExcel2Fill } from "react-icons/ri";
 
 const DownloadReport = () => {
   const handleDownload = () => {
-    window.open("http://localhost:5000/report/export", "_blank");
+    window.open(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/report/export`,
+      "_blank"
+    );
   };
 
   return (

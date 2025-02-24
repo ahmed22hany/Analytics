@@ -25,7 +25,9 @@ const SalesAnalytics = () => {
 
   const fetchAnalytics = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5000/analytics");
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/analytics`
+      );
       setTotalSales(data.totalRevenue);
       setTopProducts(data.topProducts);
     } catch (error) {

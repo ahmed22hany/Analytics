@@ -25,7 +25,9 @@ const RevenueChart = () => {
 
   const fetchAnalytics = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5000/analytics");
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/analytics`
+      );
       setTopProducts(data.topProducts);
       drawPieChart(data.topProducts);
     } catch (error) {
@@ -72,7 +74,7 @@ const RevenueChart = () => {
       const labelY = centerY + Math.sin(middleAngle) * (radius * 0.6);
 
       ctx.fillStyle = "white";
-      ctx.font = "bold 12px Arial";
+      ctx.font = "bold 8px Arial";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
 

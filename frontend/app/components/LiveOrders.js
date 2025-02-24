@@ -14,21 +14,22 @@ const LiveOrders = () => {
   useEffect(() => {
     fetchOrders();
 
-  
     socket.on("newOrder", (order) => {
       console.log("🆕 New order received:", order);
-      setOrders((prevOrders) => [order, ...prevOrders]); 
+      setOrders((prevOrders) => [order, ...prevOrders]);
     });
 
     return () => {
-      socket.off("newOrder"); 
+      socket.off("newOrder");
     };
   }, []);
 
   const fetchOrders = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5000/orders");
-      setOrders(data.reverse()); 
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/orders`
+      );
+      setOrders(data.reverse());
     } catch (error) {
       console.error("❌ Error fetching orders:", error);
     }

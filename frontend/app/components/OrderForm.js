@@ -10,7 +10,7 @@ const OrderForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:5000/orders", {
+    await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/orders`, {
       productId,
       quantity,
       price,
@@ -25,7 +25,6 @@ const OrderForm = () => {
       className="bg-gray-800 p-6 rounded-lg shadow-md max-w-md mx-auto text-white"
       onSubmit={handleSubmit}
     >
-   
       <div className="mb-4">
         <label className="block text-sm font-medium mb-1" htmlFor="product-id">
           Product ID:
@@ -39,7 +38,6 @@ const OrderForm = () => {
         />
       </div>
 
-    
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div>
           <label className="block text-sm font-medium mb-1" htmlFor="quantity">
@@ -67,7 +65,7 @@ const OrderForm = () => {
           />
         </div>
       </div>
-              
+
       <button
         type="submit"
         className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"

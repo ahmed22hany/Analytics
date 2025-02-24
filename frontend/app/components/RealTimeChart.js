@@ -20,7 +20,9 @@ const RealTimeChart = () => {
 
   const fetchAnalytics = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5000/analytics");
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/analytics`
+      );
       console.log("📊 Received Analytics Data:", data);
       setTopProducts(data.topProducts || []);
       drawChart(data.topProducts || []);
