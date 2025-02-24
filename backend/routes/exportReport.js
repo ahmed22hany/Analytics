@@ -14,7 +14,6 @@ router.get("/export", async (req, res) => {
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet("Sales Report");
 
-    // ✅ Define columns
     worksheet.columns = [
       { header: "Order ID", key: "_id", width: 30 },
       { header: "Product", key: "productId", width: 20 },
@@ -24,7 +23,6 @@ router.get("/export", async (req, res) => {
       { header: "Date", key: "date", width: 25 },
     ];
 
-    // ✅ Add rows
     orders.forEach((order) => {
       worksheet.addRow({
         _id: order._id,
@@ -36,7 +34,6 @@ router.get("/export", async (req, res) => {
       });
     });
 
-    // ✅ Send Excel file to client
     res.setHeader(
       "Content-Disposition",
       "attachment; filename=Sales_Report.xlsx"
