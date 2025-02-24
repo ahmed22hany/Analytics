@@ -71,16 +71,13 @@ const RevenueChart = () => {
       const labelX = centerX + Math.cos(middleAngle) * (radius * 0.6);
       const labelY = centerY + Math.sin(middleAngle) * (radius * 0.6);
 
-      ctx.fillStyle = "white"; 
+      ctx.fillStyle = "white";
       ctx.font = "bold 12px Arial";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
 
-      // ✅ Show product name on top
-      ctx.fillText(product.name, labelX, labelY - 10);
-
-      // ✅ Show percentage below product name
-      ctx.fillText(percentage, labelX, labelY + 10);
+      // ✅ Show percentage inside the pie chart
+      ctx.fillText(percentage, labelX, labelY);
 
       startAngle += sliceAngle;
     });
@@ -91,12 +88,35 @@ const RevenueChart = () => {
       <h3 className="text-xl font-semibold text-center">
         📊 Top-Selling Products
       </h3>
+
+      {/* Pie Chart */}
       <canvas
         ref={canvasRef}
         width="300"
         height="250"
         className="block mx-auto mt-4"
       ></canvas>
+
+      {/* ✅ Legend */}
+      <div className="mt-4 flex flex-wrap justify-center">
+        {topProducts.map((product, index) => (
+          <div key={product.name} className="flex items-center mr-4 mb-2">
+            <div
+              className="w-4 h-4 rounded-full"
+              style={{
+                backgroundColor: [
+                  "#FF6384",
+                  "#36A2EB",
+                  "#FFCE56",
+                  "#4CAF50",
+                  "#9966FF",
+                ][index % 5],
+              }}
+            ></div>
+            <span className="ml-2 text-sm font-medium">{product.name}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
