@@ -27,7 +27,7 @@ const LiveOrders = () => {
   const fetchOrders = async () => {
     try {
       const { data } = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/orders`
+        `${process.env.NEXT_PUBLIC_API_URL}/orders`
       );
       setOrders(data.reverse());
     } catch (error) {

@@ -10,7 +10,7 @@ const OrderForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/orders`, {
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/orders`, {
       productId,
       quantity,
       price,
