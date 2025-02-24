@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import io from "socket.io-client";
 import axios from "axios";
 
-const socket = io(`${process.env.NEXT_PUBLIC_SOCKET_URL}`, {
+const socket = io(`${process.env.NEXT_PUBLIC_API_URL}`, {
   transports: ["websocket"],
 });
 
