@@ -12,6 +12,7 @@ const NewOrders = () => {
   const [recentOrders, setRecentOrders] = useState(0);
 
   useEffect(() => {
+    console.log("Fetching analytics..."); // 🔥 Debugging log
     fetchAnalytics();
 
     socket.on("analyticsUpdate", (data) => {
@@ -24,9 +25,9 @@ const NewOrders = () => {
 
   const fetchAnalytics = async () => {
     try {
-      const { data } = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/analytics`
-      );
+      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/analytics`;
+      const { data } = await axios.get(apiUrl);
+      console.log("Fetching from:", apiUrl); // 🔥 Debugging log
       setRecentOrders(data.recentOrders || 0);
     } catch (error) {
       console.error("❌ Error fetching recent orders:", error);

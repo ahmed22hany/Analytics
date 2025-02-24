@@ -10,14 +10,27 @@ const OrderForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/orders`, {
-      productId,
-      quantity,
-      price,
-    });
-    setProductId("");
-    setQuantity(1);
-    setPrice("");
+
+    console.log("🚀 Sending order data:", { productId, quantity, price });
+
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/orders`,
+        {
+          productId,
+          quantity,
+          price,
+        }
+      );
+
+      console.log("✅ Order submitted successfully:", response.data);
+
+      setProductId("");
+      setQuantity(1);
+      setPrice("");
+    } catch (error) {
+      console.error("❌ Error submitting order:", error);
+    }
   };
 
   return (
