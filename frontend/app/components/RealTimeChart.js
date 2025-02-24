@@ -21,7 +21,7 @@ const RealTimeChart = () => {
   const fetchAnalytics = async () => {
     try {
       const { data } = await axios.get("http://localhost:5000/analytics");
-      console.log("📊 Received Analytics Data:", data); // ✅ Log received data
+      console.log("📊 Received Analytics Data:", data);
       setTopProducts(data.topProducts || []);
       drawChart(data.topProducts || []);
     } catch (error) {
