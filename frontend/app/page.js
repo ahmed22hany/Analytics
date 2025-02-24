@@ -18,7 +18,6 @@ export default function Dashboard() {
       }`}
     >
       <div className="container mx-auto p-6">
-        {/* Dark Mode Toggle */}
         <button
           className="px-4 py-2 rounded-lg bg-blue-500 text-white transition-transform transform hover:scale-110"
           onClick={() => setDarkMode(!darkMode)}
@@ -29,8 +28,7 @@ export default function Dashboard() {
         <h1 className="text-3xl font-bold mt-4 transition-opacity duration-500">
           📊 Real-Time Sales Dashboard
         </h1>
-
-        {/* Grid Layout */}
+          
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
           <div className="p-4 bg-white dark:bg-gray-800 shadow-lg rounded-lg transition-all duration-300">
             <OrderForm />
