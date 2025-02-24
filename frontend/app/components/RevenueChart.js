@@ -58,7 +58,6 @@ const RevenueChart = () => {
     products.forEach((product, index) => {
       const sliceAngle = (product.sales / totalSales) * 2 * Math.PI;
 
-      // Draw pie slice
       ctx.beginPath();
       ctx.moveTo(centerX, centerY);
       ctx.arc(centerX, centerY, radius, startAngle, startAngle + sliceAngle);
@@ -66,16 +65,13 @@ const RevenueChart = () => {
       ctx.fillStyle = colors[index % colors.length];
       ctx.fill();
 
-      // Calculate percentage
       const percentage = ((product.sales / totalSales) * 100).toFixed(1) + "%";
 
-      // Calculate label position (move slightly inward)
       const middleAngle = startAngle + sliceAngle / 2;
-      const labelX = centerX + Math.cos(middleAngle) * (radius * 0.6); // ✅ Keep text inside
+      const labelX = centerX + Math.cos(middleAngle) * (radius * 0.6);
       const labelY = centerY + Math.sin(middleAngle) * (radius * 0.6);
 
-      // Set text style
-      ctx.fillStyle = "white"; // High contrast for visibility
+      ctx.fillStyle = "white"; 
       ctx.font = "bold 12px Arial";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
