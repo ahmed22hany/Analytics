@@ -13,7 +13,7 @@ const server = http.createServer(app);
 // Initialize WebSocket
 const io = new Server(server, {
   cors: {
-    origin: [`${process.env.VERCEL_URL}`, `${process.env.LOCALHOST_URL}`],
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
   },
 });
